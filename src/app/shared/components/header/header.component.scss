@@ -1,0 +1,35 @@
+.header {
+    background-color: #003366;
+    .header-left,
+    .header-center,
+    .header-right {
+        flex: 1;
+    }
+
+    .header-left {
+        justify-content: flex-start;
+    }
+
+    .header-center {
+        justify-content: center;
+    }
+
+    .header-right {
+        justify-content: flex-end;
+
+        .options {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .header-left {
+            display: none !important;
+        }
+
+        .header-right {
+            display: none !important;
+        }
+    }
+}

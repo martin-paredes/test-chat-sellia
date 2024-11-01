@@ -1,0 +1,39 @@
+<div class="chat-window position-relative d-flex flex-column">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h4>WhatsApp</h4>
+            <p class="contact-info">+5213300330033</p>
+        </div>
+
+        <div class="chat-body">
+            <div *ngFor="let item of messages"
+                [ngClass]="{ 'sent': item.message.typeUser === 'UserSystem' || item.message.typeUser === 'User', 'received': item.message.typeUser === 'Client', 'notification': item.message.typeUser === 'notification' }"
+                class="chat-message">
+
+                @if (item.message.typeUser === 'notification') {
+                <div class="chat-notification">
+                    {{ item.message.text }} <span class="timestamp">{{ item.message.createdAt }}</span>
+                </div>
+                } @else {
+                <p class="message-text">{{ item.message.text }}</p>
+                <small class="timestamp">{{ item.message.createdAt }}</small>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area w-100 bottom-0 start-0 p-3 border-top d-flex gap-2">
+        <input type="text" class="form-control" placeholder="Escribe un mensaje" aria-label="Escribe un mensaje"
+            [(ngModel)]="newMessage" name="newMessage" maxlength="100">
+
+        <button class="btn btn-outline-secondary" type="button">
+            <i class="fas fa-paperclip"></i>
+        </button>
+
+        <button class="btn btn-outline-secondary" type="button">
+            <i class="fas fa-smile"></i>
+        </button>
+
+        <button class="btn btn-primary" type="button" (click)="sendMessage()">ENVIAR</button>
+    </div>
+</div>

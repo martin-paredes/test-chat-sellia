@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #003366;
+  --background-color-light: #f8f9fa;
+  --background-color-dark: #343a40;
+  --text-color-light: #212529;
+  --text-color-dark: #f8f9fa;
+}
+
+.light-theme {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.dark-theme {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  --primary-color: var(--text-color-dark);
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.icon-primary {
+  color: #003366;
+}

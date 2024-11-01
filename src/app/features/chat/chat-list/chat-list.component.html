@@ -1,0 +1,49 @@
+<div class="chat-list">
+    <ul class="nav nav-tabs user-select-none">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{ active: activeTab === 'chats' }" (click)="selectTab('chats')">
+                <i class="fas fa-comments"></i> Chats
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{ active: activeTab === 'historial' }" (click)="selectTab('historial')">
+                <i class="fas fa-history"></i> Historial
+            </a>
+        </li>
+    </ul>
+
+    <div class="chat-search">
+        <input type="text" class="form-control" placeholder="Filtrar Nombre, Número..." />
+    </div>
+
+    <div class="chat-items" *ngIf="activeTab === 'chats'">
+        <div *ngFor="let chat of chats" class="card chat-card mb-3 user-select-none chat-item" 
+            [ngClass]="{ 'active': chat.status, 'selected': chat === selectedChat }" (click)="selectUser(chat)">
+            <div class="row g-0">
+                <div class="status-bar" [ngClass]="chat.status ? 'active' : 'inactive'"></div>
+
+                <div class="col d-flex align-items-center p-2">
+                    <div class="user-info d-flex align-items-center me-2">
+                        <span class="logo">
+                            <i class="fa-solid fa-circle-user fa-3x"></i>
+                        </span>
+                        <i class="fab fa-whatsapp whatsapp-icon"></i>
+                    </div>
+
+                    <div class="chat-details">
+                        <div class="chat-number fw-bold">{{ chat.phone }}</div>
+                        <div class="chat-message text-muted">{{ chat.message }}</div>
+                    </div>
+
+                    <div class="ms-auto text-muted chat-time">{{ chat.time }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="historial-items" *ngIf="activeTab === 'historial'">
+        <div class="historial-item" *ngFor="let historial of historials">
+            <p>{{ historial.date }} - {{ historial.action }}</p>
+        </div>
+    </div>
+</div>

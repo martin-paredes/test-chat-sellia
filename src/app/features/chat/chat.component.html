@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div *ngIf="!isMobile" class="row h-100">
+        <!-- Desktop Layout -->
+        <div class="col-3 border-end">
+            <app-chat-list (userSelected)="selectUser($event)"></app-chat-list>
+        </div>
+        <div class="col-6 border-end">
+            <app-chat-window [userSignal]="selectedUserSignal" (userSelected)="selectUser($event)"></app-chat-window>
+        </div>
+        <div class="col-3">
+            <app-contact-details [userSignal]="selectedUserSignal" (userSelected)="selectUser($event)"></app-contact-details>
+        </div>
+    </div>
+
+    <div *ngIf="isMobile" class="row h-100">
+        <!-- Mobile Layout -->
+        <ng-container [ngSwitch]="selectedTab">
+            <ng-container *ngSwitchCase="'users'">
+                <app-chat-list (userSelected)="selectUser($event)"></app-chat-list>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'chat'">
+                <app-chat-window *ngIf="selectedUserSignal" [userSignal]="selectedUserSignal"></app-chat-window>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'details'">
+                <app-contact-details *ngIf="selectedUserSignal" [userSignal]="selectedUserSignal"></app-contact-details>
+            </ng-container>
+        </ng-container>
+
+        <div class="fixed-bottom bg-light border-top d-flex justify-content-around mt-3">
+            <button class="btn btn-link" (click)="selectedTab = 'users'">
+                <i class="bi bi-people-fill" [ngClass]="{'icon-primary': selectedTab === 'users'}"></i>
+            </button>
+            <button class="btn btn-link" (click)="selectedTab = 'chat'" [disabled]="!selectedUserSignal">
+                <i class="bi bi-chat-dots-fill" [ngClass]="{'icon-primary': selectedTab === 'chat'}"></i>
+            </button>
+            <button class="btn btn-link" (click)="selectedTab = 'details'" [disabled]="!selectedUserSignal">
+                <i class="bi bi-info-circle-fill" [ngClass]="{'icon-primary': selectedTab === 'details'}"></i>
+            </button>
+        </div>
+    </div>
+</div>

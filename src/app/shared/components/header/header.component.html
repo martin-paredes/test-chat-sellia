@@ -1,0 +1,27 @@
+<nav class="header d-flex justify-content-between align-items-center px-3 py-2">
+    <div class="header-left d-none d-md-flex">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="logo.png" alt="Logo" width="40" height="40" class="me-2">
+        </a>
+    </div>
+
+    <div class="text-center w-100">
+        <span class="text-white fw-bold">HEY CENTER</span>
+    </div>
+
+    <div class="header-right">
+        <div class="d-flex d-md-none">
+            <button class="btn btn-link p-0" (click)="toggleMenu()">
+                <i class="bi bi-three-dots"></i>
+            </button>
+        </div>
+
+        <div [ngClass]="{ 'd-none': !showOptions && isMobile, 'd-flex': isMobile }"
+            class="options align-items-center d-none d-md-flex">
+            <div class="d-flex align-items-center ms-auto">
+                <span class="navbar-text me-3 text-white">Fulanito</span>
+                <button (click)="toggleTheme()" class="btn btn-outline-light">🌗</button>
+            </div>
+        </div>
+    </div>
+</nav>

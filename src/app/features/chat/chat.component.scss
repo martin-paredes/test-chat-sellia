@@ -1,0 +1,9 @@
+.fixed-bottom {
+    button {
+        font-size: 1.2rem;
+        color: #555;
+    }
+    button:disabled {
+        color: #ccc;
+    }
+}
